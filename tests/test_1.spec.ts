@@ -27,7 +27,7 @@ test('Pass Attribute', async ({ page }) => {
   
   });
 
-  test('User Input Exists', async ({ page }) => {
+  test('User Login', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
   
     // Kommentieren wofür
@@ -35,24 +35,28 @@ test('Pass Attribute', async ({ page }) => {
     const locatorUserInput = page.locator('#user-name');
     const locatorUserPass = page.locator('#password');
    
-    // Await Usernme inputfield to be empty 
+    // Check usernme inputfield to be empty 
     await expect(locatorUserInput).toBeEmpty();
-    
-    //Fill with username
-    await page.getByPlaceholder('Username').fill('standard_user');
 
-    // Await password inputfield to be empty 
+    // Check password inputfield to be empty 
     await expect(locatorUserPass).toBeEmpty();
 
-    // Fill with password;
+    
+    //Fill usernme inputfield with username
+    await page.getByPlaceholder('Username').fill('standard_user');
+
+    // Fill password inputfield with password;
     await page.getByPlaceholder('Password').fill('secret_sauce');
 
-    // Make screenshot
-
-    await page.screenshot({ path: 'screenshotFillLogin.png', fullPage: true });
+    // Make screenshot of filled inputfields
+    await page.screenshot({ path: 'screenshotFillInputfields.png', fullPage: true });
 
     // Click the Login button to log in 
     await page.getByRole('button').click();
+
+    // Make screenshot after clicked Login button
+    await page.screenshot({ path: 'screenshotFillInputfields.png', fullPage: true });
+
 
 
       //Click MenuNav and Logout - funktioniert
