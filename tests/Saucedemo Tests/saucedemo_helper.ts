@@ -7,6 +7,7 @@ export class SaucedemoBaseHelpers {
     readonly LoginButton: Locator;
     readonly MenuButton: Locator;
     readonly LogoutLink: Locator;
+    readonly ShoppingCardLink: Locator;
 
 
 
@@ -16,8 +17,8 @@ export class SaucedemoBaseHelpers {
         this.InputfieldPass = page.locator('#password');
         this.LoginButton = page.getByRole('button');
         this.MenuButton = page.getByRole('button', { name: /Open Menu/i });
-       // this.LogoutButton = page.getByRole('button', { name: /Open Menu/i });
         this.LogoutLink = page.locator('a',{hasText:'Logout'});
+        this.ShoppingCardLink = page.locator('#shopping_cart_container');
     }
 
     async goto() {
@@ -33,6 +34,7 @@ export class SaucedemoBaseHelpers {
         await this.page.screenshot({ path: './screenshots/AfterLoginClick.png', fullPage:true });
         await expect(this.page).toHaveURL(/.*inventory/);
         await this.page.screenshot({ path: './screenshots/AfterLoggedin.png', fullPage: true });
+    
 
         // click auch ohne costructor möglich
         //await this.page.getByRole('button').click();
@@ -42,6 +44,10 @@ export class SaucedemoBaseHelpers {
     async userLogoutSaucedemo() {
         await this.MenuButton.click();
         await this.LogoutLink.click();
+    }
+
+    async enterShippingCart() {
+        await this.ShoppingCardLink.click();
     }
 
 }
