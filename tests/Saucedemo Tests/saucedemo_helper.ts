@@ -1,6 +1,6 @@
 import {expect, Locator, Page} from '@playwright/test';
 
-export class SaucedemoLogin {
+export class SaucedemoBaseHelpers {
     readonly page: Page;
     readonly InputfieldUser: Locator;
     readonly InputfieldPass: Locator;
